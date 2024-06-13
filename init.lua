@@ -203,6 +203,7 @@ require('lazy').setup({
     branch = '0.1.x',
     dependencies = {
       'nvim-lua/plenary.nvim',
+      'debugloop/telescope-undo.nvim',
       -- Fuzzy Finder Algorithm which requires local dependencies to be built.
       -- Only load if `make` is available. Make sure you have the system
       -- requirements installed.
@@ -229,6 +230,7 @@ require('lazy').setup({
   'ThePrimeagen/vim-be-good',
   'github/copilot.vim',
   'christoomey/vim-tmux-navigator',
+  'edluffy/hologram.nvim',
 
   -- NOTE: Next Step on Your Neovim Journey: Add/Configure additional "plugins" for kickstart
   --       These are some example plugins that I've included in the kickstart repository.
@@ -327,7 +329,15 @@ require('telescope').setup {
       },
     },
   },
+  extensions = {
+    undo = {
+      -- telescope-undo.nvim config, see below
+    },
+    -- other extensions:
+    -- file_browser = { ... }
+  },
 }
+require("telescope").load_extension("undo")
 
 -- Enable telescope fzf native, if installed
 pcall(require('telescope').load_extension, 'fzf')
@@ -355,6 +365,10 @@ local function find_git_root()
   end
   return git_root
 end
+
+require('hologram').setup{
+    auto_display = true -- WIP automatic markdown image display, may be prone to breaking
+}
 
 -- Custom live_grep function to search in git root
 local function live_grep_git_root()
