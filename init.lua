@@ -228,7 +228,10 @@ require('lazy').setup({
     build = ':TSUpdate',
   },
   'ThePrimeagen/vim-be-good',
-  'github/copilot.vim',
+  {
+    'Exafunction/codeium.vim',
+    event = 'BufEnter'
+  },
   'christoomey/vim-tmux-navigator',
   'edluffy/hologram.nvim',
 
